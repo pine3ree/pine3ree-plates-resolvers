@@ -80,13 +80,11 @@ final class ReverseFallbackResolveTemplatePath implements
             // template-name's first segment before the "/" separator
             if ($folder === null && empty($this->processed[$templateName])) {
                 // Only process names that are not unix/linux absolute file paths
-                if ($templateNameIsAbsolutePath === false) {
-                    $parts = explode('/', $templateName, 2);
-                    if (isset($parts[1])) {
-                        $name->setFolder($parts[0]);
-                        $name->setFile($parts[1]);
-                        $folder = $name->getFolder();
-                    }
+                $parts = explode('/', $templateName, 2);
+                if (isset($parts[1])) {
+                    $name->setFolder($parts[0]);
+                    $name->setFile($parts[1]);
+                    $folder = $name->getFolder();
                 }
                 // Avoid processing the same template twice
                 $this->processed[$templateName] = true;
