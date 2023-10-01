@@ -66,52 +66,39 @@ final class ReverseFallbackResolveTemplatePath implements
             return $templatePath;
         }
 
+        /**
+         * @var Folder|null $folder Name::getFolder() has wrong return type-hint in Plates phpdoc
+         */
+        $folder = $name->getFolder();
+        // If the template does not specify a "::" folder, set a folder using the
+        // template-name's first segment before the "/" separator
+        if ($folder === null && empty($this->processed[$templateName])) {
+            // Only process names that are not unix/linux absolute file paths
+            $parts = explode('/', $templateName, 2);
+            if (isset($parts[1])) {
+                $name->setFolder($parts[0]);
+                $name->setFile($parts[1]);
+                $folder = $name->getFolder();
+            }
+            // Avoid processing the same template twice
+            $this->processed[$templateName] = true;
+        }
+
+        $templatesDirectoryPath = $name->getEngine()->getDirectory();
+        $templateFile = $name->getFile();
+
         // Create a search-path accumulator array
         $templatePaths = [];
 
-        $templateNameIsAbsolutePath = $templateName[0] === '/';
-
-        if ($templateNameIsAbsolutePath) {
-            // Handles the case of a full-unix path including the file-extension:
-            // "name" provided as "/full/path/to/my/template-name.phtml"
-            $templatePaths[] = $templateName;
-            // Handles the case of a full-unix path provided w/o the file-extension:
-            // "name" provided as "/full/path/to/my/template-name"
-            $templatePaths[] = $templateFile = $name->getFile();
-        } else {
-            /**
-             * @var Folder|null $folder
-             *
-             * Name::getFolder() has wrong return type-hint in Plates phpdoc
-             */
-            $folder = $name->getFolder();
-            // If the template does not specify a "::" folder, set a folder using the
-            // template-name's first segment before the "/" separator
-            if ($folder === null && empty($this->processed[$templateName])) {
-                // Only process names that are not unix/linux absolute file paths
-                $parts = explode('/', $templateName, 2);
-                if (isset($parts[1])) {
-                    $name->setFolder($parts[0]);
-                    $name->setFile($parts[1]);
-                    $folder = $name->getFolder();
-                }
-                // Avoid processing the same template twice
-                $this->processed[$templateName] = true;
+        /** @var Folder|null $folder */
+        if ($folder) {
+            $folderName = $folder->getName();
+            if ($templatesDirectoryPath) {
+                $templatePaths[] = "{$templatesDirectoryPath}/{$folderName}/{$templateFile}";
             }
-
-            $templatesDirectoryPath = $name->getEngine()->getDirectory();
-            $templateFile = $name->getFile();
-
-            /** @var Folder|null $folder */
-            if ($folder) {
-                $folderName = $folder->getName();
-                if ($templatesDirectoryPath) {
-                    $templatePaths[] = "{$templatesDirectoryPath}/{$folderName}/{$templateFile}";
-                }
-                $templatePaths[] = "{$folder->getPath()}/{$templateFile}";
-            } elseif ($templatesDirectoryPath) {
-                $templatePaths[] = "{$templatesDirectoryPath}/{$templateFile}";
-            }
+            $templatePaths[] = "{$folder->getPath()}/{$templateFile}";
+        } elseif ($templatesDirectoryPath) {
+            $templatePaths[] = "{$templatesDirectoryPath}/{$templateFile}";
         }
 
         // Return the 1st match, if any

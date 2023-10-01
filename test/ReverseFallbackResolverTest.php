@@ -95,23 +95,6 @@ final class ReverseFallbackResolverTest extends TestCase
         );
     }
 
-    public function testThatAbsoluteTemplatePathIsRendered(): void
-    {
-        // Cannot use vfs for tests here
-        $absoluteTemplateName = realpath(__DIR__) . "/assets/example";
-        $absoluteTemplatePath = $renderedString = "{$absoluteTemplateName}.phtml";
-
-        self::assertSame(
-            $renderedString,
-            $this->engine->render($absoluteTemplateName)
-        );
-
-        self::assertSame(
-            $renderedString,
-            $this->engine->render($absoluteTemplatePath)
-        );
-    }
-
     public function testThatTemplateWithoutFolderAndSegmentsIsResolved(): void
     {
         self::assertSame(
