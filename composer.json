@@ -68,7 +68,7 @@
         "cs-check": "@phpcs",
         "cs-fix": "@phpcbf",
         "phpstan": "phpstan analyze -c phpstan.neon",
-        "psalm": "psalm --shepherd --stats",
+        "psalm": "psalm --shepherd --stats --no-cache",
         "static-analysis": [
             "@phpstan",
             "@psalm"
