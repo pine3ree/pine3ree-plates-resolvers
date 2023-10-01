@@ -12,7 +12,7 @@ use function is_file;
 use function sprintf;
 
 /**
- * This resolvers acts in the opposite way of the default plates resolver
+ * This resolver acts in the opposite way of the default plates resolver
  *
  * When a template is rendered with a folder specification, the search starts
  * at the default template directory (if assigned) but with an added sub-folder
