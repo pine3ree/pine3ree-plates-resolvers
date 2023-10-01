@@ -128,3 +128,7 @@ $plates->render("shop/product/index", $vars);
 
 ```
 
+The url-path "/" segment notation is recommended since it shows the template
+path relative to the global templates directory, while the standard folder
+notation could trick into believeing that global directory templates are not
+being used.
