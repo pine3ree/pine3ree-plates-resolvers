@@ -16,6 +16,8 @@ trait CacheableResolveTemplatePathTrait
 {
     /**
      * A map of positively resolved template-paths indexed by template-name
+     *
+     * @var array|string[]|array<string, string>
      */
     protected array $cache = [];
 
@@ -36,6 +38,8 @@ trait CacheableResolveTemplatePathTrait
 
     /**
      * @internal Not part of the interface
+     *
+     * @return array|string[]|array<string, string>
      */
     public function getCache(): array
     {

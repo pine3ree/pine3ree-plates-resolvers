@@ -3,6 +3,7 @@
 namespace pine3ree\Plates\Template\ResolveTemplatePath;
 
 use League\Plates\Exception\TemplateNotFound;
+use League\Plates\Template\Folder;
 use League\Plates\Template\Name;
 use League\Plates\Template\ResolveTemplatePath;
 
@@ -44,13 +45,15 @@ use function str_replace;
  */
 final class ReverseFallbackResolveTemplatePath implements
     ResolveTemplatePath,
-    CacheableResolveTemplatePathInterface
+    \pine3ree\Plates\Template\ResolveTemplatePath\CacheableResolveTemplatePathInterface
 {
-    use CacheableResolveTemplatePathTrait;
+    use \pine3ree\Plates\Template\ResolveTemplatePath\CacheableResolveTemplatePathTrait;
 
     /**
      * A cache for template names that have already been assigned a folder using
      * the name's first segment
+     *
+     * @var array|true[]|array<string, true>
      */
     protected array $processed = [];
 
@@ -76,6 +79,11 @@ final class ReverseFallbackResolveTemplatePath implements
             // "name" provided as "/full/path/to/my/template-name"
             $templatePaths[] = $templateFile = $name->getFile();
         } else {
+            /**
+             * @var Folder|null $folder
+             *
+             * Name::getFolder() has wrong return type-hint in Plates phpdoc
+             */
             $folder = $name->getFolder();
             // If the template does not specify a "::" folder, set a folder using the
             // template-name's first segment before the "/" separator
@@ -94,6 +102,7 @@ final class ReverseFallbackResolveTemplatePath implements
             $templatesDirectoryPath = $name->getEngine()->getDirectory();
             $templateFile = $name->getFile();
 
+            /** @var Folder|null $folder */
             if ($folder) {
                 $folderName = $folder->getName();
                 if ($templatesDirectoryPath) {
