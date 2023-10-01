@@ -33,4 +33,12 @@ trait CacheableResolveTemplatePathTrait
     {
         $this->cache = [];
     }
+
+    /**
+     * @internal Not part of the interface
+     */
+    public function getCache(): array
+    {
+        return $this->cache;
+    }
 }
