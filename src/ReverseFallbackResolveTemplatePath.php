@@ -56,6 +56,7 @@ final class ReverseFallbackResolveTemplatePath implements
     public function __invoke(Name $name): string
     {
         $templateName = $name->getName();
+        $templateName = str_replace('::', '/', $templateName); // Force unique cache-key
         $templatePath = $this->getFromCache($templateName);
         if (!empty($templatePath)) {
             return $templatePath;
