@@ -106,7 +106,6 @@ final class ReverseFallbackResolveTemplatePath implements
             }
         }
 
-
         // Return the 1st match, if any
         foreach ($templatePaths as $templatePath) {
             if (is_file($templatePath)) {
