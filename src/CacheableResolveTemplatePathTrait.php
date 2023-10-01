@@ -17,7 +17,7 @@ trait CacheableResolveTemplatePathTrait
     /**
      * A map of positively resolved template-paths indexed by template-name
      *
-     * @var array|string[]|array<string, string>
+     * @var string[]|array<string, string>
      */
     protected array $cache = [];
 
