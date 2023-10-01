@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace pine3ree\test\Plates;
 
 use League\Plates\Engine;
-use League\Plates\Template\Func;
+use League\Plates\Exception\TemplateNotFound;
 use League\Plates\Template\Template;
-use LogicException;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
-use pine3ree\test\Plates\Asset\DummyExtension;
 use pine3ree\Plates\Template\ResolveTemplatePath\ReverseFallbackResolveTemplatePath;
-use League\Plates\Exception\TemplateNotFound;
+
+use function realpath;
 
 final class ReverseFallbackResolverTest extends TestCase
 {
