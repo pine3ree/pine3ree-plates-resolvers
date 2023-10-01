@@ -15,7 +15,7 @@ use function sprintf;
  * This resolvers acts in the opposite way of the default plates resolver
  *
  * When a template is rendered with a folder specification, the search starts
- * at the default template directory (if given) but with an added sub-folder
+ * at the default template directory (if assigned) but with an added sub-folder
  * matching the folder specification, e.g.
  *
  * ```php
