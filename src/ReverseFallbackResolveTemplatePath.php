@@ -84,7 +84,8 @@ final class ReverseFallbackResolveTemplatePath implements
         $templatesDirectoryPath = $name->getEngine()->getDirectory();
         $templateFile = $name->getFile();
 
-        $templatePaths = []; // A search-paths accumulator
+        // Create a search-path accumulator array
+        $templatePaths = [];
         if ($folder) {
             $folderName = $folder->getName();
             if ($templatesDirectoryPath) {
@@ -104,6 +105,7 @@ final class ReverseFallbackResolveTemplatePath implements
             $templatePaths[] = "{$templatesDirectoryPath}/{$templateFile}";
         }
 
+        // Return the 1st match, if any
         foreach ($templatePaths as $templatePath) {
             if (is_file($templatePath)) {
                 $this->addToCache($templateName, $templatePath);
