@@ -10,6 +10,7 @@ use function explode;
 use function implode;
 use function is_file;
 use function sprintf;
+use function str_replace;
 
 /**
  * This resolver acts in the opposite way of the default plates resolver
