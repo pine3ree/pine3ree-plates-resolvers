@@ -122,7 +122,6 @@ $plates->render("news/article/read", $vars);
 
 // This will load the template in the module templates directory, because there
 // is no matching file in the global directory
-// This will load the template in the module templates directory
 $plates->render("shop::product/index", $vars); // or simply
 $plates->render("shop/product/index", $vars);
 
