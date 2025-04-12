@@ -68,6 +68,7 @@ jobs:
 
       - name: Static Analysis (psalm)
         id: psalm
+        if: ${{ matrix.composer-deps == 'latest' }}
         run: composer psalm
 
       - name: Test (phpunit)
