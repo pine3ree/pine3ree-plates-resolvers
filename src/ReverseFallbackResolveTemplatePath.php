@@ -34,13 +34,13 @@ use function str_replace;
  * ```php
  * $template->render('partials/pagination', $vars);
  * ```
- * In both cases the "partial" folder must have been defined in the engine's configuration
+ * In both cases the "partials" folder must have been defined in the engine's configuration.
  *
  * This can be useful in modular application, where we want the module templates
- * to be close to the source code. In those cases we set a folder for each module
- * template. When we reuse the same module in other applications it will works
- * right away. Then, we will use the default "application" templates directory t
- * customize/override the default module templates.
+ * to be close to the source code. In those cases we set a template folder for each module.
+ * When we reuse the same module in other applications it will work right away.
+ * Then, we will use the default "application" templates directory to customize/override
+ * the default module templates.
  *
  */
 final class ReverseFallbackResolveTemplatePath implements
