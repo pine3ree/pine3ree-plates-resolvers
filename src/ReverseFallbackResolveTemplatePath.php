@@ -45,9 +45,9 @@ use function str_replace;
  */
 final class ReverseFallbackResolveTemplatePath implements
     ResolveTemplatePath,
-    \pine3ree\Plates\Template\ResolveTemplatePath\CacheableResolveTemplatePathInterface
+    CacheableResolveTemplatePathInterface
 {
-    use \pine3ree\Plates\Template\ResolveTemplatePath\CacheableResolveTemplatePathTrait;
+    use CacheableResolveTemplatePathTrait;
 
     /**
      * A cache for template names that have already been assigned a folder using
