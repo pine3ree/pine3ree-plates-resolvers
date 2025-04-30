@@ -41,8 +41,7 @@
     },
     "require-dev": {
         "mikey179/vfsstream": "^1.6.11",
-        "phpspec/prophecy-phpunit": "^1.1 || ^2.0",
-        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan": "^1.12",
         "phpstan/phpstan-strict-rules": "^1.5",
         "phpunit/phpunit": "^9.3",
         "squizlabs/php_codesniffer": "^3.5.7",
@@ -69,10 +68,8 @@
         "cs-check": "@phpcs",
         "cs-fix": "@phpcbf",
         "phpstan": "phpstan analyze -c phpstan.neon",
-        "psalm": "psalm --shepherd --stats --no-cache",
         "static-analysis": [
-            "@phpstan",
-            "@psalm"
+            "@phpstan"
         ],
         "phpunit": "phpunit --colors=always",
         "test": "@phpunit",
