@@ -12,7 +12,7 @@ Plates engine:
 
 ### Install
 
-This package requires `PHP 7.4 ~ 8.2`. You can install it via composer:
+This package requires `PHP 7.4 ~ 8.4`. You can install it via composer:
 
 ```bash
 $ composer require pine3ree/pine3ree-plates-resolvers
